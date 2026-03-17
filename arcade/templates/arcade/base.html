@@ -1,0 +1,33 @@
+{% load static %}  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meri's Arcade</title>
+    <!-- Google Fonts for Retro Arcade Style -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'arcade/css/style.css' %}">
+</head>
+<body>
+    {% block navbar %}
+    <nav>
+        <a href="{% url 'lobby' %}"><h1>🕹️ Arcade Lobby</h1></a>
+        <div class="auth-links" style="margin-top: 10px; font-size: 0.8rem;">
+            {% if user.is_authenticated %}
+                <span>Welcome, {{ user.username }}!</span> | 
+                <form method="post" action="{% url 'logout' %}" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:none; border:none; color:var(--neon-pink); cursor:pointer; font-family:inherit; text-transform:uppercase;">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </nav>
+    <hr>
+    {% endblock %}
+    {% block content %}
+    {% endblock %}
+</body>
+</html>

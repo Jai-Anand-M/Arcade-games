@@ -1,0 +1,23 @@
+{% extends "arcade/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="game-container">
+    <h2>Playing: {{ game.title }}</h2>
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    
+    <div class="leaderboard">
+        <h3>Top Scores</h3>
+        {% for entry in leaderboard %}
+            <div class="leaderboard-entry">
+                <span>{{ entry.user.username }}</span>
+                <span>{{ entry.score }}</span>
+            </div>
+        {% empty %}
+            <p style="text-align: center; font-size: 0.6rem;">No scores yet.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<script src="{% static 'arcade/js/' %}{{ game.slug }}.js"></script>
+{% endblock %}

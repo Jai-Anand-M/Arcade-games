@@ -1,0 +1,51 @@
+{% extends "arcade/base.html" %}
+{% load static %}
+
+{% block navbar %}{% endblock %}
+
+{% block content %}
+<div class="game-container">
+    <h2>Player Login</h2>
+    
+    <div class="leaderboard" style="text-align: center; margin-top: 50px; padding: 40px; border-color: var(--neon-pink);">
+        <form method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <div style="margin-bottom: 20px;">
+                <label for="id_username" style="display: block; color: var(--neon-blue); margin-bottom: 10px;">Username:</label>
+                {{ form.username }}
+            </div>
+            
+            <div style="margin-bottom: 30px;">
+                <label for="id_password" style="display: block; color: var(--neon-blue); margin-bottom: 10px;">Password:</label>
+                {{ form.password }}
+            </div>
+            
+            <button type="submit" class="play-btn" style="width: 100%;">
+                INSERT COIN (Login)
+            </button>
+            <input type="hidden" name="next" value="{{ next }}" />
+        </form>
+        
+        {% if form.errors %}
+            <p style="color: red; margin-top: 20px; font-size: 0.8rem;">Access Denied. Check credentials.</p>
+        {% endif %}
+    </div>
+</div>
+
+<style>
+    /* Add some specific retro styles for the form inputs */
+    input[type="text"], input[type="password"] {
+        background: #000;
+        border: 2px solid var(--neon-green);
+        color: var(--neon-green);
+        font-family: var(--font-arcade);
+        padding: 10px;
+        width: 80%;
+        text-align: center;
+        outline: none;
+    }
+    input[type="text"]:focus, input[type="password"]:focus {
+        box-shadow: 0 0 10px var(--neon-green);
+    }
+</style>
+{% endblock %}
