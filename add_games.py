@@ -8,6 +8,22 @@ from arcade.models import Game
 
 def add_games():
     Game.objects.get_or_create(
+        title="Ping Pong",
+        slug="pong",
+        defaults={
+            'description': "Classic 2-player neon ping pong! W/S controls the left paddle, Up/Down keys control the right paddle. First to 20 wins."
+        }
+    )
+    
+    Game.objects.get_or_create(
+        title="Tetris",
+        slug="tetris",
+        defaults={
+            'description': "Stack the falling neon tetrominoes. Use Arrow keys or WASD to move and rotate."
+        }
+    )
+
+    Game.objects.get_or_create(
         title="Snake",
         slug="snake",
         defaults={
@@ -23,7 +39,7 @@ def add_games():
         }
     )
     
-    print("Retro games (Snake, Asteroids) have been added!")
+    print("All four retro games (Ping Pong, Tetris, Snake, Asteroids) have been added to the database!")
 
 if __name__ == '__main__':
     add_games()
